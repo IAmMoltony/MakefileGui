@@ -28,7 +28,7 @@ namespace MakefileGui
                 makefileName = makefileTextBox.Text;
 
             StringBuilder builder = new StringBuilder();
-            builder.Append($"{targetTextBox.Text} -f {makefileName}");
+            builder.Append($"{targetTextBox.Text} -f {makefileName} ");
 
             // extra vars
             foreach (string line in extraVarsList.Items)
