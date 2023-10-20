@@ -42,7 +42,7 @@ namespace MakefileGui
         private void MainForm_Load(object sender, EventArgs e)
         {
             // this is bad but i couldn't care less
-            TextBox.CheckForIllegalCrossThreadCalls = false;
+            CheckForIllegalCrossThreadCalls = false;
         }
 
         private void wdBrowseButton_Click(object sender, EventArgs e)
