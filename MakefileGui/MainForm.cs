@@ -21,16 +21,21 @@ namespace MakefileGui
 
         private string GetMakeArguments()
         {
+            // get makefile name
+            // if user didn't specify, go with 'Makefile'
             string makefileName = "Makefile";
             if (makefileTextBox.Text.Count() != 0)
                 makefileName = makefileTextBox.Text;
 
             StringBuilder builder = new StringBuilder();
             builder.Append($"{targetTextBox.Text} -f {makefileName}");
+
+            // extra vars
             foreach (string line in extraVarsList.Items)
             {
                 builder.Append($"{line} ");
             }
+
             return builder.ToString();
         }
 
@@ -77,23 +82,26 @@ namespace MakefileGui
 
         private void makeButton_Click(object sender, EventArgs e)
         {
+            // get make arguments
             string makeArguments = GetMakeArguments();
+
+            // display "running command" text
             makeOutput.Clear();
             makeOutput.AppendText($"Running command: make.exe {makeArguments}{Environment.NewLine}");
 
             Process makeProcess = new Process();
-            makeProcess.StartInfo.FileName = "make.exe";
-            makeProcess.StartInfo.Arguments = makeArguments;
-            makeProcess.StartInfo.WorkingDirectory = wdTextBox.Text;
-            makeProcess.StartInfo.CreateNoWindow = true;
-            makeProcess.StartInfo.RedirectStandardOutput = true;
-            makeProcess.StartInfo.RedirectStandardError = true;
-            makeProcess.StartInfo.UseShellExecute = false;
-            makeProcess.EnableRaisingEvents = true;
-            makeProcess.OutputDataReceived += MakeSentOutput;
-            makeProcess.ErrorDataReceived += MakeSentOutput;
-            makeProcess.Exited += MakeExited;
-            makeProcess.Start();
+            makeProcess.StartInfo.FileName = "make.exe"; // program name
+            makeProcess.StartInfo.Arguments = makeArguments; // arguments
+            makeProcess.StartInfo.WorkingDirectory = wdTextBox.Text; // wd
+            makeProcess.StartInfo.CreateNoWindow = true; // dont create command prompt window
+            makeProcess.StartInfo.RedirectStandardOutput = true; // redirect stdout
+            makeProcess.StartInfo.RedirectStandardError = true; // redirect stderr
+            makeProcess.StartInfo.UseShellExecute = false; // dont use shell execute
+            makeProcess.EnableRaisingEvents = true; // enable raising events
+            makeProcess.OutputDataReceived += MakeSentOutput; // hook up stdout handler
+            makeProcess.ErrorDataReceived += MakeSentOutput; // hook up stderr handler
+            makeProcess.Exited += MakeExited; // hook up exit handler
+            makeProcess.Start(); // start the process
             makeProcess.BeginOutputReadLine();
             makeProcess.BeginErrorReadLine();
         }
