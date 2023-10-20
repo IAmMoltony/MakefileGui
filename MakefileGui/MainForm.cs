@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace MakefileGui
 {
@@ -39,10 +40,42 @@ namespace MakefileGui
             return builder.ToString();
         }
 
+        private string GetAppDataPath()
+        {
+            return $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\MakefileGui";
+        }
+
+        private string GetRecentDirectoryFilePath()
+        {
+            return $"{GetAppDataPath()}\\recent.txt";
+        }
+
+        private string GetRecentDirectory()
+        {
+            return File.ReadAllText(GetRecentDirectoryFilePath()).Replace("\n", string.Empty).Replace("\r", string.Empty);
+        }
+
+        private void UpdateRecentDirectoryMenu()
+        {
+            if (File.Exists(GetRecentDirectoryFilePath()))
+            {
+                toolStripMenuItem2.Text = GetRecentDirectory();
+                toolStripMenuItem2.Enabled = true;
+            }
+            else
+            {
+                toolStripMenuItem2.Enabled = false;
+                toolStripMenuItem2.Text = "No recent directory";
+                Directory.CreateDirectory(GetAppDataPath());
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             // this is bad but i couldn't care less
             CheckForIllegalCrossThreadCalls = false;
+
+            UpdateRecentDirectoryMenu();
         }
 
         private void wdBrowseButton_Click(object sender, EventArgs e)
@@ -89,6 +122,10 @@ namespace MakefileGui
             makeOutput.Clear();
             makeOutput.AppendText($"Running command: make.exe {makeArguments}{Environment.NewLine}");
 
+            // set recent folder
+            File.WriteAllText(GetRecentDirectoryFilePath(), wdTextBox.Text);
+            UpdateRecentDirectoryMenu();
+
             Process makeProcess = new Process();
             makeProcess.StartInfo.FileName = "make.exe"; // program name
             makeProcess.StartInfo.Arguments = makeArguments; // arguments
@@ -106,9 +143,19 @@ namespace MakefileGui
             makeProcess.BeginErrorReadLine();
         }
 
-        private void aboutButton_Click(object sender, EventArgs e)
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new AboutBox().Show();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            wdTextBox.Text = toolStripMenuItem2.Text;
         }
     }
 }
