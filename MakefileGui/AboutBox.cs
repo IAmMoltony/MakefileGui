@@ -28,5 +28,11 @@ namespace MakefileGui
         {
             Close();
         }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo("https://iammoltony.github.io/makefilegui/index.html");
+            Process.Start(psi);
+        }
     }
 }
