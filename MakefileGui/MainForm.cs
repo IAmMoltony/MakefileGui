@@ -105,5 +105,10 @@ namespace MakefileGui
             makeProcess.BeginOutputReadLine();
             makeProcess.BeginErrorReadLine();
         }
+
+        private void aboutButton_Click(object sender, EventArgs e)
+        {
+            new AboutBox().Show();
+        }
     }
 }
