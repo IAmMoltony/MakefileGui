@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.wdTextBox = new System.Windows.Forms.TextBox();
             this.wdTextBoxLabel = new System.Windows.Forms.Label();
             this.wdBrowseButton = new System.Windows.Forms.Button();
@@ -47,6 +48,7 @@
             this.removeSelectedExtraVarButton = new System.Windows.Forms.Button();
             this.makeButton = new System.Windows.Forms.Button();
             this.makeOutput = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -225,22 +227,33 @@
             // makeOutput
             // 
             this.makeOutput.BackColor = System.Drawing.SystemColors.Window;
-            this.makeOutput.Location = new System.Drawing.Point(94, 239);
+            this.makeOutput.Location = new System.Drawing.Point(94, 256);
             this.makeOutput.Multiline = true;
             this.makeOutput.Name = "makeOutput";
             this.makeOutput.ReadOnly = true;
-            this.makeOutput.Size = new System.Drawing.Size(524, 105);
+            this.makeOutput.Size = new System.Drawing.Size(524, 88);
             this.makeOutput.TabIndex = 17;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(94, 240);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Output";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(630, 356);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.makeOutput);
             this.Controls.Add(this.makeButton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Makefile GUI";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -274,5 +287,6 @@
         private System.Windows.Forms.Button removeSelectedExtraVarButton;
         private System.Windows.Forms.Button makeButton;
         private System.Windows.Forms.TextBox makeOutput;
+        private System.Windows.Forms.Label label1;
     }
 }

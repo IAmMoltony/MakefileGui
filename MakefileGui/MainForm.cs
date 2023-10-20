@@ -36,7 +36,7 @@ namespace MakefileGui
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // this is bad but idc
+            // this is bad but i couldn't care less
             TextBox.CheckForIllegalCrossThreadCalls = false;
         }
 
