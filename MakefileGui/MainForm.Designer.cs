@@ -52,10 +52,12 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openRecentDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.extraFlagsTextBoxLabel = new System.Windows.Forms.Label();
+            this.extraFlagsTextBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -184,6 +186,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.extraFlagsTextBox);
+            this.panel1.Controls.Add(this.extraFlagsTextBoxLabel);
             this.panel1.Controls.Add(this.wdTextBoxLabel);
             this.panel1.Controls.Add(this.wdTextBox);
             this.panel1.Controls.Add(this.wdBrowseButton);
@@ -279,6 +283,13 @@
             this.openRecentDirectoryToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.openRecentDirectoryToolStripMenuItem.Text = "Open recent directory";
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(83, 22);
+            this.toolStripMenuItem2.Text = "...";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
@@ -297,16 +308,25 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem2
+            // extraFlagsTextBoxLabel
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem2.Text = "...";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            this.extraFlagsTextBoxLabel.AutoSize = true;
+            this.extraFlagsTextBoxLabel.Location = new System.Drawing.Point(8, 127);
+            this.extraFlagsTextBoxLabel.Name = "extraFlagsTextBoxLabel";
+            this.extraFlagsTextBoxLabel.Size = new System.Drawing.Size(56, 13);
+            this.extraFlagsTextBoxLabel.TabIndex = 7;
+            this.extraFlagsTextBoxLabel.Text = "Extra flags";
+            // 
+            // extraFlagsTextBox
+            // 
+            this.extraFlagsTextBox.Location = new System.Drawing.Point(11, 144);
+            this.extraFlagsTextBox.Name = "extraFlagsTextBox";
+            this.extraFlagsTextBox.Size = new System.Drawing.Size(209, 20);
+            this.extraFlagsTextBox.TabIndex = 8;
             // 
             // MainForm
             // 
@@ -365,5 +385,7 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.TextBox extraFlagsTextBox;
+        private System.Windows.Forms.Label extraFlagsTextBoxLabel;
     }
 }
