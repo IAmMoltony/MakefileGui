@@ -105,6 +105,7 @@ namespace MakefileGui
             if (!string.IsNullOrEmpty(args.Data))
             {
                 makeOutput.AppendText(args.Data);
+                makeOutput.AppendText(Environment.NewLine);
             }
         }
 
